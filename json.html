@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AWS IAM Policy Reference - Configuration in JSON format</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <pre id="formatted-json" />
+    <script type="text/javascript">
+    	var app = {};
+    </script>
+    <script src="https://awspolicygen.s3.amazonaws.com/js/policies.js"></script>
+    <script type="text/javascript">
+  	  document.getElementById("formatted-json").textContent = JSON.stringify(app.PolicyEditorConfig, undefined, 2);
+    </script>
+  </body>
+</html>
