@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>AWS IAM Policy Reference - Actions</title>
+        <title>AWS IAM Policy Reference - Prefixes</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="container">
-            <h1>AWS IAM Policy Reference - Actions</h1>
-            <div id="list">
-            </div>
+            <h1>AWS IAM Policy Reference - Prefixes</h1>
+            <table id="table">
+            </table>
         </div>
         <script type="text/javascript">
             var app = {};
@@ -25,13 +25,11 @@
                 serviceWithPrefix.push({'serviceName': serviceName, 'stringPrefix': serviceMap[serviceName]['StringPrefix']});
             }
             serviceWithPrefix.sort((a, b) => a['stringPrefix'].localeCompare(b['stringPrefix']));
-            var listElement = $('#list');
+            var table = $('#table');
             serviceWithPrefix.forEach(item => {
                 var stringPrefix = item['stringPrefix'];
-                var actions = serviceMap[item['serviceName']]['Actions'];
-                actions.forEach(action => {
-                   listElement.append(stringPrefix+':'+action+'</br>');
-                });
+                var serviceName = item['serviceName'];
+                table.append('<tr><td>'+stringPrefix+'</td><td>'+serviceName+'</td>');
             });
         </script>
     </body>
