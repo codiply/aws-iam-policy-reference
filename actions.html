@@ -20,18 +20,19 @@
                 src="https://awspolicygen.s3.amazonaws.com/js/policies.js"></script>
         <script type = "text/javascript">
             var serviceMap = app.PolicyEditorConfig['serviceMap'];
-            var serviceWithPrefix = [];
+            var actionsWithPrefix = [];
             for (serviceName in serviceMap) {
-                serviceWithPrefix.push({'serviceName': serviceName, 'stringPrefix': serviceMap[serviceName]['StringPrefix']});
-            }
-            serviceWithPrefix.sort((a, b) => a['stringPrefix'].localeCompare(b['stringPrefix']));
-            var listElement = $('#list');
-            serviceWithPrefix.forEach(item => {
-                var stringPrefix = item['stringPrefix'];
-                var actions = serviceMap[item['serviceName']]['Actions'];
+                var stringPrefix = serviceMap[serviceName]['StringPrefix'];
+                var actions = serviceMap[serviceName]['Actions'];
                 actions.forEach(action => {
-                   listElement.append(stringPrefix+':'+action+'</br>');
+                    actionsWithPrefix.push(stringPrefix+":"+action);
                 });
+            }
+            var listElement = $('#list');
+            var uniqueActions = [...new Set(actionsWithPrefix)];
+            var sortedActions = uniqueActions.sort((a, b) => a.localeCompare(b));
+            sortedActions.forEach(action => {
+                listElement.append(action+'</br>');
             });
         </script>
     </body>
