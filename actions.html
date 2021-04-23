@@ -28,12 +28,13 @@
                     actionsWithPrefix.push(stringPrefix+":"+action);
                 });
             }
-            var listElement = $('#list');
             var uniqueActions = [...new Set(actionsWithPrefix)];
             var sortedActions = uniqueActions.sort((a, b) => a.localeCompare(b));
+            var content = '';
             sortedActions.forEach(action => {
-                listElement.append(action+'</br>');
+                content += action+'</br>';
             });
+            $('#list').append(content);
         </script>
     </body>
 </html>
